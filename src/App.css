@@ -1,0 +1,75 @@
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.win-message {
+  font-size: 2rem;
+  margin-top: 20px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .card {
+    width: 80px;
+    height: 80px;
+  }
+
+  .card {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 60px;
+    height: 60px;
+  }
+
+  .card {
+    font-size: 1rem;
+  }
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+.input-container input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.score {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.high-score {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.reset-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.reset-button:hover {
+  background-color: #0056b3;
+}

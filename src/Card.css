@@ -1,0 +1,44 @@
+.card {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid #000;
+  margin: 10px;
+  font-size: 24px;
+  text-align: center;
+  background-color: #158a00;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.card.flipped {
+  background-color: #b8ec51; /* Background color when flipped */
+  cursor: default;
+  color: black;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .card {
+    width: 80px;
+    height: 80px;
+  }
+
+  .card {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 60px;
+    height: 60px;
+  }
+
+  .card {
+    font-size: 1rem;
+  }
+}
