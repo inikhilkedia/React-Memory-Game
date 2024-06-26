@@ -1,5 +1,7 @@
 ## Detailed Explanation of the Memory Game React App
 
+![alt text]([http://url/to/img.png](https://github.com/inikhilkedia/React-Memory-Game/blob/main/React%20Memory%20Game%20Screenshot.png))
+
 ### Overview
 
 This memory card game is a React application designed to test and enhance memory skills. The objective is to flip cards and find matching pairs with the fewest attempts. The application tracks the user's attempts and stores the best score in local storage to provide a competitive aspect.
