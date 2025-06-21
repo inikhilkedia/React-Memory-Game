@@ -1,6 +1,6 @@
 ## Detailed Explanation of the Memory Game React App
 
-![Game Screenshot](https://github.com/inikhilkedia/React-Memory-Game/blob/main/React%20Memory%20Game%20Screenshot.png)
+![Game Screenshot](ReactMemoryGameScreenshot.png)
 
 ### Overview
 
