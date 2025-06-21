@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useOptimistic } from 'react';
 import Card, { CardType } from './Card';
 import './App.css';
 
@@ -12,6 +12,8 @@ const generateDeck = (): CardType[] => {
 const App: React.FC = () => {
 	const [deck, setDeck] = useState<CardType[]>(generateDeck);
 	const [flippedCards, setFlippedCards] = useState<CardType[]>([]);
+	const [optimisticFlippedCards, setOptimisticFlippedCards] =
+		useOptimistic<CardType[]>(flippedCards);
 	const [matchedPairs, setMatchedPairs] = useState<number>(0);
 	const [attempts, setAttempts] = useState<number>(0);
 	const [mismatchedCards, setMismatchedCards] = useState<CardType[]>([]);
@@ -45,10 +47,11 @@ const App: React.FC = () => {
 			}
 			setTimeout(() => {
 				setFlippedCards([]);
+				setOptimisticFlippedCards([]);
 				setMismatchedCards([]);
 			}, 1000);
 		}
-	}, [flippedCards]);
+	}, [flippedCards, setOptimisticFlippedCards]);
 
 	useEffect(() => {
 		if (matchedPairs === deck.length / 2) {
@@ -83,11 +86,15 @@ const App: React.FC = () => {
 	const handleCardClick = useCallback(
 		(card: CardType) => {
 			if (gameEnded) return;
-			if (flippedCards.length < 2 && !flippedCards.includes(card)) {
+			if (
+				optimisticFlippedCards.length < 2 &&
+				!optimisticFlippedCards.includes(card)
+			) {
+				setOptimisticFlippedCards([...optimisticFlippedCards, card]);
 				setFlippedCards(prev => [...prev, card]);
 			}
 		},
-		[flippedCards, gameEnded]
+		[optimisticFlippedCards, gameEnded, setOptimisticFlippedCards]
 	);
 
 	const resetGame = () => {
@@ -123,7 +130,9 @@ const App: React.FC = () => {
 							key={card.id}
 							card={card}
 							onClick={handleCardClick}
-							isFlipped={flippedCards.includes(card) || card.isMatched}
+							isFlipped={
+								optimisticFlippedCards.includes(card) || card.isMatched
+							}
 							isMismatched={mismatchedCards.includes(card)}
 						/>
 					))}
