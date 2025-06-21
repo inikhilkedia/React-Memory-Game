@@ -1,44 +1,123 @@
 .card {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border: 1px solid #000;
-  margin: 10px;
-  font-size: 24px;
-  text-align: center;
-  background-color: #158a00;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+	width: 100px;
+	height: 100px;
+	position: relative;
+	cursor: pointer;
+	perspective: 1000px;
+	margin: 0;
+	border-radius: 15px;
+	transition: transform 0.3s ease;
 }
 
-.card.flipped {
-  background-color: #b8ec51; /* Background color when flipped */
-  cursor: default;
-  color: black;
+.card:hover {
+	transform: scale(1.05);
+}
+
+.card-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transition: transform 0.6s;
+	transform-style: preserve-3d;
+	border-radius: 15px;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card.flipped .card-inner {
+	transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	border-radius: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2rem;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.card-front {
+	background: linear-gradient(135deg, #667eea, #764ba2);
+	transform: rotateY(180deg);
+	border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-back {
+	background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+	border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.card.matched .card-front {
+	background: linear-gradient(135deg, #28a745, #20c997);
+	animation: matchedPulse 0.6s ease-in-out;
+}
+
+.card.mismatched {
+	animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	25% {
+		transform: translateX(-5px);
+	}
+	75% {
+		transform: translateX(5px);
+	}
+}
+
+@keyframes matchedPulse {
+	0% {
+		transform: rotateY(180deg) scale(1);
+	}
+	50% {
+		transform: rotateY(180deg) scale(1.1);
+	}
+	100% {
+		transform: rotateY(180deg) scale(1);
+	}
+}
+
+.card.matched {
+	cursor: default;
+}
+
+.card.matched:hover {
+	transform: scale(1);
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .card {
-    width: 80px;
-    height: 80px;
-  }
+	.card {
+		width: 80px;
+		height: 80px;
+	}
 
-  .card {
-    font-size: 1.5rem;
-  }
+	.card-front,
+	.card-back {
+		font-size: 1.5rem;
+	}
 }
 
 @media (max-width: 480px) {
-  .card {
-    width: 60px;
-    height: 60px;
-  }
+	.card {
+		width: 60px;
+		height: 60px;
+	}
 
-  .card {
-    font-size: 1rem;
-  }
+	.card-front,
+	.card-back {
+		font-size: 1.2rem;
+	}
 }

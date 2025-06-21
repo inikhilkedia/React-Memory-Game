@@ -3,7 +3,7 @@ import Card, { CardType } from './Card';
 import './App.css';
 
 const generateDeck = (): CardType[] => {
-	const contents = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+	const contents = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'];
 	return [...contents, ...contents]
 		.sort(() => Math.random() - 0.5)
 		.map((content, index) => ({ id: index, content, isMatched: false }));
@@ -14,6 +14,7 @@ const App: React.FC = () => {
 	const [flippedCards, setFlippedCards] = useState<CardType[]>([]);
 	const [matchedPairs, setMatchedPairs] = useState<number>(0);
 	const [attempts, setAttempts] = useState<number>(0);
+	const [mismatchedCards, setMismatchedCards] = useState<CardType[]>([]);
 	const [name, setName] = useState<string>('');
 	const [highScore, setHighScore] = useState<{
 		name: string;
@@ -39,8 +40,13 @@ const App: React.FC = () => {
 					)
 				);
 				setMatchedPairs(prev => prev + 1);
+			} else {
+				setMismatchedCards([firstCard, secondCard]);
 			}
-			setTimeout(() => setFlippedCards([]), 1000);
+			setTimeout(() => {
+				setFlippedCards([]);
+				setMismatchedCards([]);
+			}, 1000);
 		}
 	}, [flippedCards]);
 
@@ -89,37 +95,43 @@ const App: React.FC = () => {
 		setFlippedCards([]);
 		setMatchedPairs(0);
 		setAttempts(0);
+		setMismatchedCards([]);
 		setGameEnded(false);
 	};
 
 	return (
 		<div className='App'>
 			<h1>Memory Game</h1>
-			<div className='input-container'>
-				<input
-					type='text'
-					placeholder='Enter your name'
-					value={name}
-					onChange={e => setName(e.target.value)}
-				/>
-			</div>
-			<div className='score'>Attempts: {attempts}</div>
-			<div className='high-score'>
-				High Score: {highScore.name} - {highScore.attempts} attempts
-			</div>
-			<div className='board'>
-				{deck.map(card => (
-					<Card
-						key={card.id}
-						card={card}
-						onClick={handleCardClick}
-						isFlipped={flippedCards.includes(card) || card.isMatched}
+			<div className='game-container'>
+				<div className='input-container'>
+					<input
+						type='text'
+						placeholder='Enter your name'
+						value={name}
+						onChange={e => setName(e.target.value)}
 					/>
-				))}
+				</div>
+				<div className='stats-container'>
+					<div className='score'>Attempts: {attempts}</div>
+					<div className='high-score'>
+						High Score: {highScore.name} - {highScore.attempts} attempts
+					</div>
+				</div>
+				<div className='board'>
+					{deck.map(card => (
+						<Card
+							key={card.id}
+							card={card}
+							onClick={handleCardClick}
+							isFlipped={flippedCards.includes(card) || card.isMatched}
+							isMismatched={mismatchedCards.includes(card)}
+						/>
+					))}
+				</div>
+				{matchedPairs === deck.length / 2 && (
+					<div className='win-message'>🎉 You Win! 🎉</div>
+				)}
 			</div>
-			{matchedPairs === deck.length / 2 && (
-				<div className='win-message'>You Win!</div>
-			)}
 			<button className='reset-button' onClick={resetGame}>
 				Reset Game
 			</button>
