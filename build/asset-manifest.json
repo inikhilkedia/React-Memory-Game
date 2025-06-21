@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/inikhilkedia/React-Memory-Game/static/css/main.e293ad5c.css",
-    "main.js": "/inikhilkedia/React-Memory-Game/static/js/main.9f7c432e.js",
-    "static/js/453.58d809e6.chunk.js": "/inikhilkedia/React-Memory-Game/static/js/453.58d809e6.chunk.js",
-    "index.html": "/inikhilkedia/React-Memory-Game/index.html",
-    "main.e293ad5c.css.map": "/inikhilkedia/React-Memory-Game/static/css/main.e293ad5c.css.map",
-    "main.9f7c432e.js.map": "/inikhilkedia/React-Memory-Game/static/js/main.9f7c432e.js.map",
-    "453.58d809e6.chunk.js.map": "/inikhilkedia/React-Memory-Game/static/js/453.58d809e6.chunk.js.map"
+    "main.css": "/React-Memory-Game/static/css/main.e293ad5c.css",
+    "main.js": "/React-Memory-Game/static/js/main.235ed911.js",
+    "static/js/453.58d809e6.chunk.js": "/React-Memory-Game/static/js/453.58d809e6.chunk.js",
+    "index.html": "/React-Memory-Game/index.html",
+    "main.e293ad5c.css.map": "/React-Memory-Game/static/css/main.e293ad5c.css.map",
+    "main.235ed911.js.map": "/React-Memory-Game/static/js/main.235ed911.js.map",
+    "453.58d809e6.chunk.js.map": "/React-Memory-Game/static/js/453.58d809e6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e293ad5c.css",
-    "static/js/main.9f7c432e.js"
+    "static/js/main.235ed911.js"
   ]
 }
